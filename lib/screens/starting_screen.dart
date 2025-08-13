@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/styled_text.dart';
 
 class StartingScreen extends StatelessWidget {
-  const StartingScreen({super.key});
+  const StartingScreen(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,8 @@ class StartingScreen extends StatelessWidget {
                 // Logo
                 Image.asset(
                   'assets/quiz-logo.png',
-                  height: 300,
-                  width: 300,
+                  height: 350,
+                  width: 350,
                 ),
                 
                 const SizedBox(height: 40),
@@ -26,7 +28,7 @@ class StartingScreen extends StatelessWidget {
                 // Title Text using StyledText
                 const StyledText('Learn Flutter the fun way!'),
                 
-                const Spacer(flex: 3),
+                const SizedBox(height: 120),
                 
                 // Start Button
                 SizedBox(
@@ -41,6 +43,7 @@ class StartingScreen extends StatelessWidget {
                           duration: Duration(seconds: 1),
                         ),
                       );
+                      startQuiz();
                     },
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(
@@ -53,7 +56,7 @@ class StartingScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                     ),
                     child: const Text(
-                      'Start',
+                      'Start Quiz',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -63,7 +66,7 @@ class StartingScreen extends StatelessWidget {
                   ),
                 ),
                 
-                const SizedBox(height: 40),
+                const SizedBox(height: 110),
               ],
             ),
           ),
