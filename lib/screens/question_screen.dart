@@ -3,8 +3,10 @@ import 'package:quiz_app/widgets/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class QuestionScreen extends StatefulWidget {
+  // named argument for the callback function
   const QuestionScreen({super.key, required this.onSelectAnswer});
 
+  // callback function to notify when an answer is selected
   final void Function(String answer) onSelectAnswer;
 
   @override
@@ -15,6 +17,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
   
   void answerQuestion(String selectedAnswer) {
+    // widget property is part of the State property
     widget.onSelectAnswer(selectedAnswer);
     
     setState(() {

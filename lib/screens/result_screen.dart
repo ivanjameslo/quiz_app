@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/widgets/summary_list.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({
@@ -14,7 +15,7 @@ class ResultScreen extends StatelessWidget {
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
 
-    for (var i = 0; i < chosenAnswers.length; i++) {
+    for (int i = 0; i < chosenAnswers.length; i++) {
       summary.add({
         'question_index': i,
         'question': questions[i].question,
@@ -44,25 +45,35 @@ class ResultScreen extends StatelessWidget {
               'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
+
             Text(
-              'Score: ${(numCorrectQuestions / numTotalQuestions * 100).round()}%',
+              "Summary Report",
               style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+                color: const Color.fromARGB(255, 214, 214, 151),
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
               ),
             ),
+
             const SizedBox(height: 30),
+
+            // Scrollable Questions Summary
+            SummaryList(summaryData: summaryData),
+            
+            const SizedBox(height: 35),
             TextButton.icon(
               onPressed: onRestart,
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
+                backgroundColor: Colors.white.withOpacity(0.1),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               ),
               icon: const Icon(Icons.refresh),
               label: const Text('Restart Quiz!'),

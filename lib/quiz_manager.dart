@@ -11,7 +11,7 @@ class QuizManager extends StatefulWidget {
 
 class _QuizManagerState extends State<QuizManager> {
   Widget? activeScreen;
-  List<String> selectedAnswers = [];
+  List<String> selectedAnswers = []; // to store the selected answers by the user
   
   @override
   void initState() {
@@ -25,9 +25,12 @@ class _QuizManagerState extends State<QuizManager> {
     });
   }
 
+  // function to handle answer selection
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
     
+    // if the length of selected answers equals the number of questions, show result screen
+    // meaning all questions have been answered
     if (selectedAnswers.length == questions.length) {
       setState(() {
         activeScreen = ResultScreen(
